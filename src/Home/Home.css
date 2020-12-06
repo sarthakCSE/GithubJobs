@@ -1,0 +1,103 @@
+.panelPage{
+    display: flex;
+    background-color:#F5F6F8;
+    justify-content: center;
+    display: block;
+    width: auto;
+    height: auto;
+}
+.panelPagelight{
+    display: flex;
+    background-color:#F5F6F8;
+    justify-content: center;
+    display: block;
+    width: auto;
+    height: auto;
+}
+.panelPagedark{
+    display: flex;
+    background-color:#131822;
+    justify-content: center;
+    display: block;
+    width: auto;
+    height: auto;
+}
+.headerlight{
+    width: auto;
+    height: 120px;
+    background-color: #5865E0;
+    text-align: center;
+}
+.jobBlock{
+    width: 200px;
+    height: 130px;
+    margin: 20px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 3px 5px #ccc;
+    padding: 16px;
+    text-align: center;
+    display: inline-grid;
+    border-radius: 10px;
+}
+.jobBlock :hover{
+    cursor: pointer;
+}
+.timePosted{
+    width: auto;
+    color:darkgray;
+    font-weight: 900;
+    font-size: small;
+    margin: 10px;
+    text-align: left !important;
+}
+.jobTitlelight{
+    width: auto;
+    color:black;
+    font-weight: bolder;
+    font-size: large;
+    margin: 10px;
+    text-align: left !important;
+}
+.jobLocation{
+    width: auto;
+    color:#5865E0;
+    font-size: small;
+    margin: 10px;
+    text-align: left !important;
+}
+.jobTitledark{
+    width: auto;
+    color:#FFFFFF;
+    font-weight: bolder;
+    font-size: large;
+    margin: 10px;
+    text-align: left !important;
+}
+.filter{
+    padding-top: 50px;
+    margin-left: 40px;
+}
+.enterJob{
+    height: 30px;
+    width: 35%;
+    margin: 10px;
+}
+.findJobButton{
+    height: 35px;
+    background-color: #ccc;
+}
+
+.details{
+    padding: 50px;
+}
+.darkIcon{
+    margin-left: 50px;
+    margin-top: 5px;
+}
+.load{
+    background-color: #5865E0;
+    color:#FFFFFF;
+    height: 40px;
+    width: 100px;
+    border-radius: 6px;
+}

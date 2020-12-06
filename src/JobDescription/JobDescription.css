@@ -1,0 +1,88 @@
+
+.jobNamelight{
+    width: 500px;
+    margin: 20px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    display: inline-grid;
+    z-index: 1;
+    background-color: #F5F6F8;
+    margin-bottom: 50px;
+}
+.jobNamedark{
+    width: 500px;
+    margin: 20px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    display: inline-grid;
+    z-index: 1;
+    background-color: #131822;
+    margin-bottom: 50px;
+}
+.toggleSwitch{
+    margin-right: -160px;
+}
+
+.jobLocation1{
+    color: black;
+    text-align: start;
+}
+.descriptionlight{
+    width: 500px;
+    height: auto;
+    overflow: scroll;
+    margin: 20px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    display: inline-grid;
+    z-index: 1;
+    background-color: #F5F6F8; 
+    margin-top: 100px;
+}
+.descriptiondark{
+    width: 500px;
+    height: auto;
+    overflow: scroll;
+    margin: 20px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    display: inline-grid;
+    z-index: 1;
+    background-color:#131822 ; 
+    margin-top: 100px;
+}
+.apply{
+    height: 40px;
+    color: #eee;
+    background-color: #5865E0;
+    width: 100px;
+    margin-left: auto;
+}
+.apply:hover{
+    cursor: pointer;
+}
+.infolight{
+    font-size: small;
+    text-align: left;
+}
+.infodark{
+    font-size: small;
+    text-align: left;
+    color:darkgray;
+    font-weight: bold;
+}
+.apply1{
+    height: 40px;
+    color: #eee;
+    background-color: #5865E0;
+    width: 100%;
+    margin-top: 10px;
+}
