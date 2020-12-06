@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState,useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import './Home.css'
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,7 +9,7 @@ import axios from 'axios'
 //import Brightness3Icon from '@material-ui/icons/Brightness3';
 
 
-const Home = ()=>{
+const Home = (props)=>{
 
     const inlineStyle={
         textDecoration:"none"
@@ -18,9 +18,13 @@ const Home = ()=>{
     const [state, setState] = React.useState({
         checkedB: true
       });
-    const[mode,setMode] = useState(true);
-    let [positions,setPositions] = useState([]);
-    
+    const [mode,setMode] = useState(true);
+    const [positions,setPositions] = useState([]);
+    const [description,setDescription] = useState("");
+    //const [jobDetails,setJobDetails] = useState("");
+    const [jobLocation,setJobLocation] = useState("");
+    //const myContext = useContext(AppContext);
+
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
         setMode(!mode);
@@ -33,40 +37,111 @@ const Home = ()=>{
             document.title = "Github Jobs | Dark"
       });
 
-    //   useEffect(() => {
-    //     axios.get(
-    //         "https://jobs.github.com/positions.json?search=node",
-    //         )
-    //         .then(result=>{
-    //           setPositions(JSON.parse(result.data));
-    //         })
-    //   console.log(positions);
-    //   });
+      //const { jobGlobalDetails, setJobGlobalDetails } = useContext(AppContext);
 
-      const getGithubPositions = ()=>{
-         
-          axios.get(
-              "https://jobs.github.com/positions.json?search=node",
-              )
-              .then(result=>{
-                setPositions(JSON.parse(result.data));
-              })
-        console.log(positions);
-    }
+      const handleLocationFilter = (event)=>{
+        setJobLocation(event.target.value);
+      }
+      const handleDescriptionFilter = (event)=>{
+        setDescription(event.target.value);
+      }
+
+      const getJobsByDescription = ()=>{
+        if(description ===""){
+            getPositions()
+        }
+        else{
+        axios.get(
+            "/positions.json?description="+description,
+            )
+            .then(result=>{
+                setPositions(JSON.parse(JSON.stringify((result.data))));
+            })
+        //console.log(positions);
+        }
+      }
+
+      const getJobsByLocation = ()=>{
+        if(jobLocation ===""){
+            getPositions()
+        }
+        else{
+        axios.get(
+            "/positions.json?location="+jobLocation,
+            )
+            .then(result=>{
+                setPositions(JSON.parse(JSON.stringify((result.data))));
+            })
+       // console.log(positions);
+        }
+      }
+
+      const getJobsByFilter = ()=>{
+        if(jobLocation ==="" && description === ""){
+            getPositions()
+        }
+        if(jobLocation ==="" && description !== ""){
+            getJobsByDescription()
+        }
+        if(description === "" && jobLocation !== ""){
+            getJobsByLocation()
+        }
+        else{
+            axios.get(
+                "/positions.json?location="+jobLocation,
+                )
+                .then(result=>{
+                    setPositions(JSON.parse(JSON.stringify((result.data))));
+                }) 
+            }
+        }
+
+    //   React.useEffect(() => {
+        
+    //     //setJobDetails(jobDetails);
+    //     props.onChange(jobDetails);
+    //     //setJobGlobalDetails(jobDetails);
+    //     //console.log(jobGlobalDetails)
+    //   },[jobDetails,props]);
+
+
+      const GetJobDescription =(id)=>{
+        axios.get(
+            "/positions/"+id+".json?markdown=true",
+            )
+            .then(result=>{
+                props.onChange(JSON.parse(JSON.stringify(result.data)));
+            })
+           //window.location = "/jobDesc"
+           //myContext.setJobGlobalDetails(jobDetails);
+           //console.log(myContext)
+      }
+
+
+      const getPositions = ()=>{
+            axios.get(
+                    "/positions.json?search=node",
+                    )
+                    .then(result=>{
+                    setPositions(JSON.parse(JSON.stringify((result.data))));
+                })
+            console.log(positions);
+      }
 
     return(
         <div className={"panelPage"+(state.checkedB === true?"light":"dark")}>
+            {/* <JobDescription allDetails={jobDetails}/> */}
             <div className="headerlight">
             <div className="filter">
                 <span>
                     <SearchIcon/>
-                    <input type="text" placeholder="Filter by Job Title, Name, Companies" className="enterJob"></input>
+                    <input type="text" placeholder="Filter by Job Title, Name, Companies" onChange={handleDescriptionFilter} className="enterJob"></input>
                 </span>
                 <span>
                     <LocationOnIcon/>
-                    <input type="text" placeholder="Filter by Location" className="enterJob"></input>
+                    <input type="text" placeholder="Filter by Location" onChange={handleLocationFilter} className="enterJob"></input>
                 </span>
-                <button class="findJobButton">Search</button>
+                <button class="findJobButton" onClick={getJobsByFilter}>Search</button>
                 <span>
                     {/* <Brightness3Icon className="darkIcon"></Brightness3Icon> */}
                     <Switch
@@ -82,75 +157,20 @@ const Home = ()=>{
             </div>
             </div>
             <div className="details">
-                {/* {positions.map((job) => (
-                    <div className="jobBlock">{job.id}</div>
-                 ))} */}
-                <Link style={inlineStyle} to="/jobid=32321">
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                </Link>
-           
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Sr. Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Front-End Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Solutions Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Infrastructure Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Sr.Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Product Manager</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Sr. Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
-                <div className="jobBlock">
-                    <label className="timePosted">9h ago - Full time</label>
-                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Sr. Software Engineer</label>
-                    <label className="jobLocation">New York, US</label>
-                </div>
+            {positions.map((job) => (
+                <Link style={inlineStyle} to="/jobDescription">
+                    <div className="jobBlock" value={job.id} onClick={()=>GetJobDescription(job.id)}>
+                    <img src={job.company_logo} className="logos" alt=""></img>
+                    <label className="timePosted">{job.type}</label>
+                    <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>{job.title}</label>
+                    <label className="timePosted">{job.company}</label>
+                    <label className="jobLocation">{job.location}</label>
+                    </div>
+               </Link>
+                ))}
                 <div>
-                    <button className="load" onClick={getGithubPositions}>Load More</button>
-                </div>
+                    <button className="load" onClick={getPositions}>Load More</button>
+                </div> 
             </div>
         </div>
         

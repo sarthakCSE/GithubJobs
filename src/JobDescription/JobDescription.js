@@ -5,10 +5,13 @@ import Switch from '@material-ui/core/Switch';
 import {useState,useEffect} from 'react'
 
 
-const JobDescription = ()=>{
+const JobDescription = (props)=>{
 
     const inlineStyle={
         marginLeft:"0px"
+    }
+    const marginStyle={
+        marginLeft:"auto"
     }
 
     const [state, setState] = React.useState({
@@ -22,6 +25,10 @@ const JobDescription = ()=>{
         setMode(!mode);
       };
 
+      const howtoapply = (data) =>{
+          window.alert(data.allDetails.how_to_apply)
+      }
+
       useEffect(() => {
         if(mode === true)
             document.title = "Github Jobs | Light"
@@ -31,12 +38,15 @@ const JobDescription = ()=>{
     return(
        
         <div className={"panelPage"+(state.checkedB === true?"light":"dark")}>
+            {console.log(props)}
             <div className="headerlight">
                 <div className={"jobName"+(state.checkedB === true?"light":"dark")}>
-                        <img src={require('../images/thumbnail.jpg')} alt=""></img>
-                        <label className={"jobTitle"+(state.checkedB === true?"light":"dark")} style={inlineStyle}>Software Engineer</label>
-                        <label className="jobLocation" style={inlineStyle}>New York, US</label>
-                        <button class="apply">Visit Company</button>
+                        <img className="logos" src={props.allDetails.company_logo} alt=""></img>
+                        <label className={"jobTitle"+(state.checkedB === true?"light":"dark")} style={inlineStyle}>{props.allDetails.company}</label>
+                        <label className="jobLocation" style={inlineStyle}>{props.allDetails.location}</label>
+                        <a href={props.allDetails.company_url} style={marginStyle} target="blank">
+                            <button class="apply">Company Site</button>
+                        </a>
                 </div>
                 <span className="toggleSwitch">
                     {/* <Brightness3Icon className="darkIcon"></Brightness3Icon> */}
@@ -53,47 +63,20 @@ const JobDescription = ()=>{
             </div>
 
             <div className={"description"+(state.checkedB === true?"light":"dark")}>
-                <label className={"jobTitle"+(state.checkedB === true?"light":"dark")}>Software Engineer</label>
-                <label className="jobLocation">New York, US</label>
-                <button className="apply">Apply</button>
+                <label className={"jobTitle"+(state.checkedB === true?"light":"dark")} style={inlineStyle}>{props.allDetails.title}</label>
+                <label className="timePosted" style={inlineStyle}>{props.allDetails.type}</label>
+                <label className="timePosted" style={inlineStyle}>{props.allDetails.company}</label>
+                <label className="jobLocation" style={inlineStyle}>{props.allDetails.location}</label>
+
+                    <button className="apply" onClick={()=>howtoapply(props)}>Apply</button>
+
                 <div className="jobDetails">
                     <p className={"info"+(state.checkedB === true?"light":"dark")}>
-                    Build applications in conjunction with our data scientists to support the use of machine learning, deep learning and similar technologies
-                    Independently support processes related to the implementation of systems into production, including integration of purchased solutions.
-                    Responsible for design, coding, testing, debugging, and documentation.
-
-                    </p>
-                    <p className={"info"+(state.checkedB === true?"light":"dark")}>
-                    Required
-
-                    Background Experience
-                    3-5+ years of experience building enterprise scale production-ready applications
-                    3-5+ years of experience with an object-oriented programming language such as Python, Java, C++, etc.
-                    Strong foundation in algorithms, data structures and general computer science concepts
-
-                    Preferred
-                    Strong Python experience
-                    Experience with Continuous Integration/Continuous Deployment
-                    Hands on experience with data integrations
-                    Experience with relational and no-sql databases
-                    Experience with Machine Learning concepts
-                    Agile Development
-                    Python frameworks such as Flask, Django, etc.
-                    DevOps methodology and tools
-                    Event/Stream-based architectures such as Kafka
-                    Microservices
-                    Graph Databases
-                    Elasticsearch / Splunk
-                    Familiarity with Infrastructure operations
-                    </p>
-                    <p className={"info"+(state.checkedB === true?"light":"dark")}>
-                    Additional Job Information
-
-                    Ability to work effectively with business areas and IT management and staff.Good judgment.Knowledge of the business area's functions and systems, and system and applications program development technological alternatives.Good communication skills.
+                    {props.allDetails.description}
                     </p>
                 </div>
                 <div>
-                    <button className="apply1">Apply to Job</button>
+                    <button className="apply1" onClick={()=>howtoapply(props)}>Apply to Job</button>
                 </div>
             </div>
         </div>

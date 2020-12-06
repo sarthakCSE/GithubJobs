@@ -30,7 +30,7 @@
 }
 .jobBlock{
     width: 200px;
-    height: 130px;
+    height: 250px;
     margin: 20px;
     border: 1px solid #eeeeee;
     box-shadow: 0 3px 5px #ccc;
@@ -100,4 +100,8 @@
     height: 40px;
     width: 100px;
     border-radius: 6px;
+}
+.logos{
+    height: 30px;
+    width: auto;
 }
