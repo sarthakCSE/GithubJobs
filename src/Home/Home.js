@@ -20,13 +20,6 @@ const Home = ()=>{
       });
     const[mode,setMode] = useState(true);
     let [positions,setPositions] = useState([]);
-
-    const test=[
-        {id:"1",name:"sam"},
-        {id:"2",name:"sar"},
-        {id:"3",name:"chay"},
-        {id:"4",name:"pra"},
-    ]
     
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
