@@ -97,7 +97,7 @@ const Home = (props)=>{
 
         React.useEffect(() => {
             axios.get(
-                "https://cors-anywhere.herokuapp.com/https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node",
+                "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node",
                 )
                 .then(result=>{
                 setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -107,7 +107,7 @@ const Home = (props)=>{
 
       const GetJobDescription =(id)=>{
         axios.get(
-            "/positions/"+id+".json?markdown=true",
+            "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/"+id+".json?markdown=true",
             )
             .then(result=>{
                 props.onChange(JSON.parse(JSON.stringify(result.data)));
