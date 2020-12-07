@@ -30,6 +30,7 @@ const Home = (props)=>{
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
         setMode(!mode);
+        setStart(start)
     };
 
     useEffect(() => {

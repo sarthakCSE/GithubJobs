@@ -10,9 +10,6 @@ const JobDescription = (props)=>{
     const inlineStyle={
         marginLeft:"0px"
     }
-    const marginStyle={
-        marginLeft:"auto"
-    }
 
     const [state, setState] = React.useState({
         checkedB: true
