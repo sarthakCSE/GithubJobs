@@ -18,9 +18,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-        {/* <Route path="/">
+        <Route path="/">
           <Home jobDetails={jobGlobalDetails} onChange={handleChange}/>
-        </Route> */}
+        </Route>
         <Route exact path="/home">
           <Home jobDetails={jobGlobalDetails} onChange={handleChange}/>
         </Route>
