@@ -47,47 +47,46 @@ const Home = (props)=>{
         setDescription(event.target.value);
       }
 
-      const getJobsByDescription = ()=>{
-        if(description ===""){
-            getPositions()
-        }
-        else{
-        axios.get(
-            "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description="+description,
-            )
-            .then(result=>{
-                setPositions(JSON.parse(JSON.stringify((result.data))));
-            })
-        }
-      }
+    //   const getJobsByDescription = ()=>{
+    //     if(description ===""){
+    //         getPositions()
+    //     }
+    //     else{
+    //     axios.get(
+    //         "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search="+description,
+    //         )
+    //         .then(result=>{
+    //             setPositions(JSON.parse(JSON.stringify((result.data))));
+    //         })
+    //     }
+    //   }
 
-      const getJobsByLocation = ()=>{
-        if(jobLocation ===""){
-            getPositions()
-        }
-        else{
-        axios.get(
-            "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location="+jobLocation,
-            )
-            .then(result=>{
-                setPositions(JSON.parse(JSON.stringify((result.data))));
-            })
-        }
-      }
+    //   const getJobsByLocation = ()=>{
+    //     if(jobLocation ===""){
+    //         getPositions()
+    //     }
+    //     else{
+    //     axios.get(
+    //         "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location="+jobLocation,
+    //         )
+    //         .then(result=>{
+    //             setPositions(JSON.parse(JSON.stringify((result.data))));
+    //         })
+    //     }
+    //   }
 
       const getJobsByFilter = ()=>{
-        if(jobLocation ==="" && description === ""){
-            getPositions()
-        }
-        if(jobLocation ==="" && description !== ""){
-            getJobsByDescription()
-        }
-        if(description === "" && jobLocation !== ""){
-            getJobsByLocation()
-        }
-        else{
+          if(jobLocation === "" && description === ""){
             axios.get(
-                "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location="+jobLocation,
+                "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json",
+                )
+                .then(result=>{
+                setPositions(JSON.parse(JSON.stringify((result.data))));
+            })
+          }
+          else{
+            axios.get(
+                "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location="+jobLocation+"&search="+description
                 )
                 .then(result=>{
                     setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -97,7 +96,7 @@ const Home = (props)=>{
 
         React.useEffect(() => {
             axios.get(
-                "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node",
+                "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json",
                 )
                 .then(result=>{
                 setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -117,7 +116,7 @@ const Home = (props)=>{
 
       const getPositions = ()=>{
             axios.get(
-                    "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node",
+                    "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json",
                     )
                     .then(result=>{
                     setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -127,7 +126,7 @@ const Home = (props)=>{
 
     return(
         <div className={"panelPage"+(state.checkedB === true?"light":"dark")}>
-            {/* <JobDescription allDetails={jobDetails}/> */}
+           
             <div className="headerlight">
             <div className="filter">
                 <span>
