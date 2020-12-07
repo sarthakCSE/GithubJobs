@@ -15,7 +15,7 @@
 .jobNamedark{
     width: 500px;
     margin: 20px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #131822;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: center;
@@ -52,7 +52,7 @@
     height: auto;
     overflow: scroll;
     margin: 20px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #131822;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: center;

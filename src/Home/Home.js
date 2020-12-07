@@ -53,7 +53,7 @@ const Home = (props)=>{
         }
         else{
         axios.get(
-            "/positions.json?description="+description,
+            "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description="+description,
             )
             .then(result=>{
                 setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -67,7 +67,7 @@ const Home = (props)=>{
         }
         else{
         axios.get(
-            "/positions.json?location="+jobLocation,
+            "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location="+jobLocation,
             )
             .then(result=>{
                 setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -87,7 +87,7 @@ const Home = (props)=>{
         }
         else{
             axios.get(
-                "/positions.json?location="+jobLocation,
+                "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?location="+jobLocation,
                 )
                 .then(result=>{
                     setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -97,7 +97,7 @@ const Home = (props)=>{
 
         React.useEffect(() => {
             axios.get(
-                "/positions.json?search=node",
+                "https://cors-anywhere.herokuapp.com/https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node",
                 )
                 .then(result=>{
                 setPositions(JSON.parse(JSON.stringify((result.data))));
@@ -117,7 +117,7 @@ const Home = (props)=>{
 
       const getPositions = ()=>{
             axios.get(
-                    "/positions.json?search=node",
+                    "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?search=node",
                     )
                     .then(result=>{
                     setPositions(JSON.parse(JSON.stringify((result.data))));
