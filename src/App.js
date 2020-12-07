@@ -11,7 +11,6 @@ function App() {
 
   function handleChange(jobDetailsName) {
     setJobGlobalDetails(jobDetailsName);
-    //console.log(jobDetailsName)
   }
 
   return (
@@ -19,13 +18,13 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-        {/* <Route path="/">
-          <Home/>
-        </Route> */}
-        <Route path="/home">
+        <Route path="/">
           <Home jobDetails={jobGlobalDetails} onChange={handleChange}/>
         </Route>
-        <Route path="/jobDescription">
+        <Route exact path="/home">
+          <Home jobDetails={jobGlobalDetails} onChange={handleChange}/>
+        </Route>
+        <Route exact path="/jobDescription">
           <JobDescription allDetails = {jobGlobalDetails}/>
         </Route>
         </Switch>

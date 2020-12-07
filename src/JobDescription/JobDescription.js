@@ -28,6 +28,7 @@ const JobDescription = (props)=>{
       const howtoapply = (data) =>{
           window.alert(data.allDetails.how_to_apply)
       }
+      
 
       useEffect(() => {
         if(mode === true)
@@ -44,9 +45,7 @@ const JobDescription = (props)=>{
                         <img className="logos" src={props.allDetails.company_logo} alt=""></img>
                         <label className={"jobTitle"+(state.checkedB === true?"light":"dark")} style={inlineStyle}>{props.allDetails.company}</label>
                         <label className="jobLocation" style={inlineStyle}>{props.allDetails.location}</label>
-                        <a href={props.allDetails.company_url} style={marginStyle} target="blank">
-                            <button class="apply">Company Site</button>
-                        </a>
+                        <button className="apply" onClick={()=>(window.open(props.allDetails.company_url,"_blank"))}>Company Site</button>
                 </div>
                 <span className="toggleSwitch">
                     {/* <Brightness3Icon className="darkIcon"></Brightness3Icon> */}
@@ -73,6 +72,12 @@ const JobDescription = (props)=>{
                 <div className="jobDetails">
                     <p className={"info"+(state.checkedB === true?"light":"dark")}>
                     {props.allDetails.description}
+                    </p>
+                </div>
+                <div className="howtoapply">
+                    <label className="heading">How to apply</label>
+                    <p className={"info"+(state.checkedB === true?"light":"dark")}>
+                        {props.allDetails.how_to_apply}
                     </p>
                 </div>
                 <div>

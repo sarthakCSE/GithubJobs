@@ -5,6 +5,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import SearchIcon from '@material-ui/icons/Search';
 import Switch from '@material-ui/core/Switch';
 import axios from 'axios'
+
 //import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 //import Brightness3Icon from '@material-ui/icons/Brightness3';
 
@@ -23,7 +24,8 @@ const Home = (props)=>{
     const [description,setDescription] = useState("");
     //const [jobDetails,setJobDetails] = useState("");
     const [jobLocation,setJobLocation] = useState("");
-    //const myContext = useContext(AppContext);
+    const [start,setStart] = useState(true);
+
 
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -36,8 +38,6 @@ const Home = (props)=>{
         else
             document.title = "Github Jobs | Dark"
       });
-
-      //const { jobGlobalDetails, setJobGlobalDetails } = useContext(AppContext);
 
       const handleLocationFilter = (event)=>{
         setJobLocation(event.target.value);
@@ -57,7 +57,6 @@ const Home = (props)=>{
             .then(result=>{
                 setPositions(JSON.parse(JSON.stringify((result.data))));
             })
-        //console.log(positions);
         }
       }
 
@@ -72,7 +71,6 @@ const Home = (props)=>{
             .then(result=>{
                 setPositions(JSON.parse(JSON.stringify((result.data))));
             })
-       // console.log(positions);
         }
       }
 
@@ -96,13 +94,14 @@ const Home = (props)=>{
             }
         }
 
-    //   React.useEffect(() => {
-        
-    //     //setJobDetails(jobDetails);
-    //     props.onChange(jobDetails);
-    //     //setJobGlobalDetails(jobDetails);
-    //     //console.log(jobGlobalDetails)
-    //   },[jobDetails,props]);
+        React.useEffect(() => {
+            axios.get(
+                "/positions.json?search=node",
+                )
+                .then(result=>{
+                setPositions(JSON.parse(JSON.stringify((result.data))));
+            })
+      },[start]);
 
 
       const GetJobDescription =(id)=>{
@@ -112,9 +111,6 @@ const Home = (props)=>{
             .then(result=>{
                 props.onChange(JSON.parse(JSON.stringify(result.data)));
             })
-           //window.location = "/jobDesc"
-           //myContext.setJobGlobalDetails(jobDetails);
-           //console.log(myContext)
       }
 
 
@@ -169,7 +165,7 @@ const Home = (props)=>{
                </Link>
                 ))}
                 <div>
-                    <button className="load" onClick={getPositions}>Load More</button>
+                    <button className="load" onClick={getPositions}>Load Jobs</button>
                 </div> 
             </div>
         </div>

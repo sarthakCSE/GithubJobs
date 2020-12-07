@@ -10,6 +10,7 @@
     z-index: 1;
     background-color: #F5F6F8;
     margin-bottom: 50px;
+    border-radius: 5px;
 }
 .jobNamedark{
     width: 500px;
@@ -22,6 +23,7 @@
     z-index: 1;
     background-color: #131822;
     margin-bottom: 50px;
+    border-radius: 5px;
 }
 .toggleSwitch{
     margin-right: -160px;
@@ -65,6 +67,7 @@
     background-color: #5865E0;
     width: 100px;
     margin-left: auto;
+    border-radius: 6px;
 }
 .apply:hover{
     cursor: pointer;
@@ -85,4 +88,20 @@
     background-color: #5865E0;
     width: 100%;
     margin-top: 10px;
+    border-radius: 6px;
+}
+.howtoapply{
+    height: 150px;
+    width: auto;
+    background-color: #5865E0;
+    text-align: start;
+    padding: 10px;
+    color: #FFFFFF;
+    border-radius: 6px;
+    overflow: scroll;
+}
+.heading{
+    font-weight: bold;
+    font-size: large;
+    text-align: start;
 }

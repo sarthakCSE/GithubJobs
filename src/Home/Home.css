@@ -58,13 +58,6 @@
     margin: 10px;
     text-align: left !important;
 }
-.jobLocation{
-    width: auto;
-    color:#5865E0;
-    font-size: small;
-    margin: 10px;
-    text-align: left !important;
-}
 .jobTitledark{
     width: auto;
     color:#FFFFFF;
@@ -73,6 +66,14 @@
     margin: 10px;
     text-align: left !important;
 }
+.jobLocation{
+    width: auto;
+    color:#5865E0;
+    font-size: small;
+    margin: 10px;
+    text-align: left !important;
+}
+
 .filter{
     padding-top: 50px;
     margin-left: 40px;
